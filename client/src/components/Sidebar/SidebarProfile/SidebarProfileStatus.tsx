@@ -1,0 +1,1 @@
+export const SidebarProfileStatus = () => <h1 className="text-black dark:text-success text-sm animate-pulse duration-600 font-Mona font-semibold">online</h1>
