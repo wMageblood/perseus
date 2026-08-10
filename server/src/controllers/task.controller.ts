@@ -4,7 +4,7 @@ import { Task } from "../models/Task";
 
 export const createTask = async (req: Request, res: Response) => {
 
-  const { workspacesId } = req.params
+  const { workspaceId } = req.params
 
   const {
     title,
@@ -16,7 +16,7 @@ export const createTask = async (req: Request, res: Response) => {
   } = req.body;
 
   const task = await Task.create({
-    workspaceId: new Types.ObjectId(workspacesId as string),
+    workspaceId: new Types.ObjectId(workspaceId as string),
     title,
     description,
     assignedTo,

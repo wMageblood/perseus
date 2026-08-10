@@ -4,17 +4,13 @@ import { Workspace } from "../models/Workspace";
 
 export const createWorkspace = async (req: Request, res: Response) => {
 
-  console.log("REQ.USER", req.user);
-
-  console.log("check fi alive")
+  const userId = req.user?.id;
 
   const {
     name,
     color,
     icon
   } = req.body
-
-  const userId = req.user?.id
 
   console.log("REQ.USER", userId);
 
@@ -154,4 +150,8 @@ export const updateWorkspace = async (req: Request, res: Response) => {
     })
   }
 
+};
+
+export const addMember = async (req: Request, res: Response) => {
+  console.log("addMember function")
 };

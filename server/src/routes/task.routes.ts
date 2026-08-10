@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/", getTasks)
 
-router.post("/", createTask)
+router.post("/workspace/:workspaceId", createTask)
 
 router.delete("/:id", deleteTask)
 

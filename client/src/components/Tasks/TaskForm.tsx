@@ -9,9 +9,10 @@ interface TaskFormProps {
   onCreate: (task: ITask) => void
   mode: "create" | "edit"
   task?: ITask
+  workspaceId: string
 };
 
-export const TaskForm = ({ onClose, mode, task, onUpdate, onCreate}: TaskFormProps) => {
+export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId }: TaskFormProps) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -45,6 +46,7 @@ export const TaskForm = ({ onClose, mode, task, onUpdate, onCreate}: TaskFormPro
       priority,
       assignedTo,
       dueDate,
+      workspaceId,
     };
 
     if (mode === "create") {
@@ -67,7 +69,7 @@ export const TaskForm = ({ onClose, mode, task, onUpdate, onCreate}: TaskFormPro
 
       } finally {
 
-        setIsLoading(true)
+        setIsLoading(false)
       };
 
     } else {

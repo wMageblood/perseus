@@ -29,7 +29,7 @@ export const deleteTask = async (id: string) => {
 
 export const createTask = async (taskData: ITaskPayload) => {
 
-  const response = await fetch(`${API_URL}`, {
+  const response = await fetch(`${API_URL}/workspace/${taskData.workspaceId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -104,6 +104,7 @@ export const Tasks = () => {
         onClose={handleCloseModal}
         onUpdate={handleUpdateTask}
         onCreate={handleCreate}
+        workspaceId={workspaceId!}
       />
 
       <ConfirmModal

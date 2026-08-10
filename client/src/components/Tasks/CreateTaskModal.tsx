@@ -6,13 +6,14 @@ import type { ITask } from "../../types/task";
 interface CreateTaskModalProps {
   open: boolean;
   onClose: () => void;
-  mode: "create" | "edit"
-  task?: ITask
   onUpdate: (task: ITask) => void
   onCreate: (task: ITask) => void
+  mode: "create" | "edit"
+  task?: ITask
+  workspaceId: string
 };
 
-export const CreateTaskModal = ({ open, onClose, mode, task, onUpdate, onCreate}: CreateTaskModalProps) => {
+export const CreateTaskModal = ({ open, onClose, onUpdate, onCreate, mode, task, workspaceId }: CreateTaskModalProps) => {
 
   return (
     <AnimatePresence>
@@ -31,7 +32,7 @@ export const CreateTaskModal = ({ open, onClose, mode, task, onUpdate, onCreate}
                 </button>
               </div>
 
-              <TaskForm onCreate={onCreate} onUpdate={onUpdate} onClose={onClose} mode={mode} task={task} />
+              <TaskForm workspaceId={workspaceId} onCreate={onCreate} onUpdate={onUpdate} onClose={onClose} mode={mode} task={task} />
 
             </div>
           </motion.div>
