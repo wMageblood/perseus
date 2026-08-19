@@ -41,5 +41,7 @@ export const verifyRole = async (req: Request, res: Response, next: NextFunction
     })
   };
 
+  req.member = member;
+
   next();
 };

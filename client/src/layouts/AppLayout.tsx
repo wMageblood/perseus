@@ -6,7 +6,7 @@ export const AppLayout = () => {
     <div className="flex h-screen">
       <Sidebar />
 
-      <div className='flex-1 overflow-y-auto'>
+      <div className='flex-1 overflow-y-auto bg-[#0f1012]'>
         <Outlet />
       </div>
     </div>

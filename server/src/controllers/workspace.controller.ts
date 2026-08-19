@@ -153,5 +153,60 @@ export const updateWorkspace = async (req: Request, res: Response) => {
 };
 
 export const addMember = async (req: Request, res: Response) => {
-  console.log("addMember function")
+
+  const workspaceId = req.params.workspaceId;
+  const invitingMemberRole = req.member!.role
+  const userId = req.body.userId
+  const invitedMemberRole = req.body.role
+
+  try {
+
+    if (invitingMemberRole === "owner") {
+      if (!(invitedMemberRole === "admin" || invitedMemberRole === "member")) {
+        return res.status(400).json({
+          message: "Invalid role"
+        })
+      }
+    };
+
+    if (invitingMemberRole === "admin") {
+      if (!(invitedMemberRole === "member")) {
+        return res.status(400).json({
+          message: "Invalid role"
+        })
+      }
+    };
+
+    if ( invitingMemberRole === "member") {
+      return res.status(403).json({
+        message: "You're not allowed to invite anyone."
+      })
+    }
+
+    const workspace = await Workspace.findById(workspaceId)
+
+    if (!workspace) {
+      return res.status(401).json({
+        message: "Could not find Workspace"
+      })
+    };
+
+    workspace.members.push({
+      user: userId,
+      role: invitedMemberRole
+    });
+
+    await workspace.save()
+
+    return res.status(200).json({
+      message: "Member was added successfully"
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "ADDMEMBER: WORKSPACE.CONTROLLER: There was an error invitingMemberRole"
+    })
+
+    return
+  };
+
 };

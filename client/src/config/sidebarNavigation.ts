@@ -15,18 +15,18 @@ export const SIDEBAR_NAVIGATION = [
     icon: Workflow,
     iconClassName: "text-gray-600 dark:text-[#F3F4F6]"
   },
-  {
-    path: APP_ROUTES.TASKS,
-    label: "Tasks",
-    icon: ListCheck,
-    iconClassName: "text-gray-600 dark:text-[#F3F4F6]"
-  },
-  {
-    path: APP_ROUTES.MEMBERS,
-    label: "Members",
-    icon: UsersRound,
-    iconClassName: "text-gray-600 dark:text-[#F3F4F6]"
-  },
+  // {
+  //   path: APP_ROUTES.TASKS,
+  //   label: "Tasks",
+  //   icon: ListCheck,
+  //   iconClassName: "text-gray-600 dark:text-[#F3F4F6]"
+  // },
+  // {
+  //   path: APP_ROUTES.MEMBERS,
+  //   label: "Members",
+  //   icon: UsersRound,
+  //   iconClassName: "text-gray-600 dark:text-[#F3F4F6]"
+  // },
   {
     path: APP_ROUTES.SETTINGS,
     label: "Settings",

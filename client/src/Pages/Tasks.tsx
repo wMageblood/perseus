@@ -86,11 +86,11 @@ export const Tasks = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-10 transition-colors duration-300 dark:bg-[#0F1012]">
-      <div>
+    <div className="min-h-screen bg-white px-5 transition-colors duration-300 dark:bg-[#0F1012]">
+      {/* <div>
         <h1 className="font-Mona text-2xl font-600 text-black dark:text-[#F3F4F6]">Tasks</h1>
         <h2 className="text-md mt-2 font-Mona font-600 text-black dark:text-[#A1A1AA]">Section where it shows the current tasks assigned to each team.</h2>
-      </div>
+      </div> */}
       <div>
         <button onClick={handleOpenCreateTask} className="mt-10 ml-5 cursor-pointer font-Mona font-semibold text-info hover:underline">+ Create New Task</button>
       </div>

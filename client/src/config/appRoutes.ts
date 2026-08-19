@@ -7,9 +7,10 @@ export const APP_ROUTES = {
   PRIVACY: "/privacy",
 
   DASHBOARD: "/app/dashboard",
-  WORKSPACE: "/app/workspace",
-  TASKS: "/app/workspaces/:workspaceId/tasks",
-  MEMBERS: "/app/members",
   SETTINGS: "/app/settings",
-  LOGOUT: "/auth/logout"
+  LOGOUT: "/auth/logout",
+  WORKSPACE: "/app/workspaces",
+  WORKSPACELAYOUT: "/app/workspaces/:workspaceId",
+  TASKS: "tasks",
+  MEMBERS: "members",
 };

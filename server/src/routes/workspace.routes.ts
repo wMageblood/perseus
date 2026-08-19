@@ -13,6 +13,6 @@ router.delete("/:id", authenticate, deleteWorkspace)
 
 router.patch("/:id", authenticate, updateWorkspace)
 
-router.post("/:workspaceId/members", verifyRole, addMember)
+router.post("/:workspaceId/members", authenticate, verifyRole, addMember)
 
 export default router;

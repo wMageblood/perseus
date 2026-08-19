@@ -4,13 +4,15 @@ export type WorkspaceRole = "owner" | "admin" | "member";
 export type WorkspaceColor = "blue" | "green" | "red" | "yellow"
 export type WorkspaceIcon = "doggy" | "kitty" | "taskit" | "lildashboard"
 
-interface IWorkspace {
+export interface IWorkspaceMember {
+  user: Types.ObjectId,
+  role: WorkspaceRole,
+};
+
+export interface IWorkspace {
   name: string;
   owner: Types.ObjectId;
-  members: {
-    user: Types.ObjectId;
-    role: WorkspaceRole;
-  } [];
+  members: IWorkspaceMember[];
   color: WorkspaceColor;
   icon: WorkspaceIcon;
   createdAt: Date;
