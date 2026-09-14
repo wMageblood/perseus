@@ -12,6 +12,7 @@ import { Settings } from "../Pages/Settings"
 import { APP_ROUTES } from "../config/appRoutes"
 import { ProtectedRoute } from "./ProtectedRoute"
 import { WorkspaceLayout } from "../layouts/WorkspaceLayout"
+import { Activity } from "../Pages/Activity"
 
 
 export const AppRouter = () => {
@@ -28,6 +29,7 @@ export const AppRouter = () => {
           <Route path={APP_ROUTES.WORKSPACELAYOUT} element={<WorkspaceLayout />}>
             <Route path={APP_ROUTES.TASKS} element={<Tasks />} />
             <Route path={APP_ROUTES.MEMBERS} element={<Members />} />
+            <Route path={APP_ROUTES.ACTIVITY} element={<Activity />} />
           </Route>
           <Route path={APP_ROUTES.WORKSPACE} element={<Workspace />} />
           <Route path={APP_ROUTES.DASHBOARD} element={<Dashboard />} />

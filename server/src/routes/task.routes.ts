@@ -1,18 +1,17 @@
 import { Router } from "express";
-import { createTask, getTasks, deleteTask, updateTask, getTasksByWorkspace } from "../controllers/task.controller";
-
-console.log("deleteTask:", deleteTask)
+import { createTask, deleteTask, updateTask, getTasksByWorkspace } from "../controllers/task.controller";
+import { authenticate } from "../middleware/auth.middleware";
+import { verifyRole } from "../middleware/verifyRole.middleware";
+import { verifyMembership } from "../middleware/verifyMembership.middleware";
 
 const router = Router();
 
-router.get("/", getTasks)
+router.get("/workspace/:workspaceId/tasks", authenticate, verifyMembership, getTasksByWorkspace);
 
-router.post("/workspace/:workspaceId", createTask)
+router.post("/workspace/:workspaceId", authenticate, verifyRole, createTask)
 
-router.delete("/:id", deleteTask)
+router.patch("/workspace/:workspaceId/:id", authenticate, verifyRole, updateTask)
 
-router.patch("/:id", updateTask)
-
-router.get("/workspace/:workspaceId/tasks", getTasksByWorkspace);
+router.delete("/workspace/:workspaceId/:id", authenticate, verifyRole, deleteTask)
 
 export default router;

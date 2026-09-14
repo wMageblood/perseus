@@ -44,7 +44,7 @@ export const Tasks = () => {
 
     try {
 
-      await deleteTask(id);
+      await deleteTask(id, workspaceId!);
 
       setTasks((prev) =>
         prev.filter((task) => task.id !== id)

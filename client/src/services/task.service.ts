@@ -13,12 +13,13 @@ export const getTasks = async (workspaceId: string): Promise<ITask[]> => {
   return response.json();
 };
 
-export const deleteTask = async (id: string) => {
+export const deleteTask = async (id: string, workspaceId: string) => {
 
   const response = await fetch(
-    `${API_URL}/${id}`,
+    `${API_URL}/workspace/${workspaceId}/${id}`,
     {
       method: "DELETE",
+      credentials: "include",
     }
   );
 
@@ -48,11 +49,12 @@ export const createTask = async (taskData: ITaskPayload) => {
 };
 
 
-export const updateTask = async (id: string, taskData: ITaskPayload) => {
+export const updateTask = async (id: string, taskData: ITaskPayload, workspaceId: string) => {
 
-  const response = await fetch(`${API_URL}/${id}`,
+  const response = await fetch(`${API_URL}/workspace/${workspaceId}/${id}`,
     {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

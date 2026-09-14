@@ -16,7 +16,7 @@ export const createWorkspace = async (req: Request, res: Response) => {
 
   if (!userId) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorizeddd",
     })
   }
 
@@ -118,7 +118,6 @@ export const updateWorkspace = async (req: Request, res: Response) => {
       req.body,
       { new: true }
     );
-
 
     if ( !updatedWorkspace ) {
       return res.status(404).json({

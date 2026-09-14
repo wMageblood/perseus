@@ -1,9 +1,11 @@
+import type { IUser } from "./user";
+
 export type WorkspaceRole = "owner" | "admin" | "member";
 export type WorkspaceColor = "blue" | "green" | "red" | "yellow"
 export type WorkspaceIcon = "doggy" | "kitty" | "taskit" | "lildashboard"
 
 export interface IWorkspaceMembers {
-  user: string,
+  user: IUser,
   role: WorkspaceRole
 };
 

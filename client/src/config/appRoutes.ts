@@ -13,4 +13,5 @@ export const APP_ROUTES = {
   WORKSPACELAYOUT: "/app/workspaces/:workspaceId",
   TASKS: "tasks",
   MEMBERS: "members",
+  ACTIVITY: "activity",
 };
