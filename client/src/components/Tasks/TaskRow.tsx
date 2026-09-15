@@ -5,14 +5,16 @@ import { TaskStatus } from "./TaskStatus";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CopyButton } from "../ui/CopyButton";
+import type { IWorkspaceMembers } from "../../types/workspace";
 
 interface TaskRowProps {
   task: ITask
   onRequestDelete: ( id: string ) => void
   onRequestEdit: ( task: ITask ) => void
+  assignedMember?: IWorkspaceMembers
 };
 
-export const TaskRow = ({task, onRequestDelete, onRequestEdit}: TaskRowProps) => {
+export const TaskRow = ({task, onRequestDelete, onRequestEdit, assignedMember}: TaskRowProps) => {
 
   const [ expanded, setExpanded ] = useState(false)
 
@@ -39,7 +41,8 @@ export const TaskRow = ({task, onRequestDelete, onRequestEdit}: TaskRowProps) =>
           <p className="text-sm font-semibold text-black dark:text-[#F3F4F6]">{title}</p>
           {assignedTo ? (
             <img
-              src={assignedTo}
+              alt={assignedMember?.user.globalName}
+              src={assignedMember?.user.avatar}
               className=" h-7 w-7 rounded-full ring-info select-none hover:ring-2"
             />
           ) : (

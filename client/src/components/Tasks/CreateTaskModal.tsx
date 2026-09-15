@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { TaskForm } from "./TaskForm";
 import type { ITask } from "../../types/task";
+import type { IWorkspaceMembers } from "../../types/workspace";
 
 interface CreateTaskModalProps {
   open: boolean;
@@ -11,9 +12,10 @@ interface CreateTaskModalProps {
   mode: "create" | "edit"
   task?: ITask
   workspaceId: string
+  members: IWorkspaceMembers[]
 };
 
-export const CreateTaskModal = ({ open, onClose, onUpdate, onCreate, mode, task, workspaceId }: CreateTaskModalProps) => {
+export const CreateTaskModal = ({ open, onClose, onUpdate, onCreate, mode, task, workspaceId, members }: CreateTaskModalProps) => {
 
   return (
     <AnimatePresence>
@@ -32,7 +34,7 @@ export const CreateTaskModal = ({ open, onClose, onUpdate, onCreate, mode, task,
                 </button>
               </div>
 
-              <TaskForm workspaceId={workspaceId} onCreate={onCreate} onUpdate={onUpdate} onClose={onClose} mode={mode} task={task} />
+              <TaskForm members={members} workspaceId={workspaceId} onCreate={onCreate} onUpdate={onUpdate} onClose={onClose} mode={mode} task={task} />
 
             </div>
           </motion.div>

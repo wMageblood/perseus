@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import type { ITask } from "../../types/task";
 import { formatTask } from "../../utils/formatTask";
 import { createTask, updateTask } from "../../services/task.service";
+import type { ITask } from "../../types/task";
+import type { IWorkspaceMembers } from "../../types/workspace";
 
 interface TaskFormProps {
   onClose: () => void
@@ -10,9 +11,10 @@ interface TaskFormProps {
   mode: "create" | "edit"
   task?: ITask
   workspaceId: string
+  members: IWorkspaceMembers[]
 };
 
-export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId }: TaskFormProps) => {
+export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId, members }: TaskFormProps) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -38,6 +40,8 @@ export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
 
     e.preventDefault()
+
+    console.log("assignedTo justo antes de armar taskData:", assignedTo)
 
     const taskData = {
       title,
@@ -74,7 +78,7 @@ export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId 
 
     } else {
 
-      const updatedTask = await updateTask(task!.id, taskData)
+      const updatedTask = await updateTask(task!.id, taskData, workspaceId)
 
       onUpdate(formatTask(updatedTask));
 
@@ -118,6 +122,9 @@ export const TaskForm = ({ onClose, onUpdate, onCreate, mode, task, workspaceId 
             <label className="font-Mona text-sm font-semibold text-black dark:text-[#F3F4F6]"> Assigned To </label>
             <select value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} className="mt-2 w-full rounded-md border border-[#22252C] bg-[#0F1012] px-3 py-2 font-Mona text-sm text-white">
               <option>Nobody</option>
+              {members.map((member) => (
+                <option value={member.user.id} key={member.user.id}>{member.user.globalName}</option>
+              ))}
             </select>
           </div>
 

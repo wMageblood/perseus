@@ -5,6 +5,8 @@ import { CreateTaskModal } from "../components/Tasks/CreateTaskModal";
 import { ConfirmModal } from "../components/ui/ConfirmModal";
 import { deleteTask, getTasks } from "../services/task.service";
 import { useParams } from "react-router-dom";
+import { getMembers } from "../services/members.service";
+import type { IWorkspaceMembers } from "../types/workspace";
 
 export const Tasks = () => {
 
@@ -18,7 +20,22 @@ export const Tasks = () => {
 
   const { workspaceId } = useParams()
 
+  const [members, setMembers] = useState<IWorkspaceMembers[]>([])
+
   const handleRequestDelete = (id: string) => setTaskToDelete(id)
+
+  useEffect(() => {
+
+    const fetchMembers = async () => {
+
+      const foundMembers = await getMembers(workspaceId!);
+      setMembers(foundMembers)
+
+    };
+
+    fetchMembers();
+
+  }, [])
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -95,9 +112,10 @@ export const Tasks = () => {
         <button onClick={handleOpenCreateTask} className="mt-10 ml-5 cursor-pointer font-Mona font-semibold text-info hover:underline">+ Create New Task</button>
       </div>
 
-      <TaskList onRequestEdit={handleRequestEdit} tasks={tasks} onRequestDelete={handleRequestDelete} />
+      <TaskList members={members} onRequestEdit={handleRequestEdit} tasks={tasks} onRequestDelete={handleRequestDelete} />
 
       <CreateTaskModal
+        members={members}
         open={createTaskOpen}
         mode={selectedTask ? "edit" : "create"}
         task={selectedTask ?? undefined}

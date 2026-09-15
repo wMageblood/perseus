@@ -4,7 +4,10 @@ const API_URL = "http://localhost:3000/api/task";
 
 export const getTasks = async (workspaceId: string): Promise<ITask[]> => {
 
-  const response = await fetch(`${API_URL}/workspace/${workspaceId}/tasks`);
+  const response = await fetch(`${API_URL}/workspace/${workspaceId}/tasks`, {
+    credentials: "include",
+    cache: "no-store"
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch tasks")
@@ -32,6 +35,7 @@ export const createTask = async (taskData: ITaskPayload) => {
 
   const response = await fetch(`${API_URL}/workspace/${taskData.workspaceId}`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
